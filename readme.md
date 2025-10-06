@@ -8,6 +8,19 @@ scan_all_jkn_boostrf_top1_ent_null_knowgene_tr.job
 to point the variable PYTHON to the python version that you installed scikit-learn
 
 
+
+####
+genes with known symptoms/side-effects are in 
+all_gn_symGAN_symfreqge2.lst    column 1:  gene symbol; column 2: number of symptoms/side-effects it has
+symptoms/side-effects are listed in
+all_symGAN_side_red_symfreqge2.lst  column 1: UMLS_CUI  column 2: number of known genes causing it, column 3 to N-1: name column N (last): side effect or symptom label
+The label file 
+omim_sym_label_0.txt has the column's values according to the order in all_symGAN_side_red_symfreqge2.lst 
+
+For all benchmarking gene-symptom/side-effect table see
+all_phe_gn_symGAN_side_red_symfreqge2.tsv 
+
+
 ####
 to predict gene to symptoms with leave one out:
 #### important ####
