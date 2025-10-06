@@ -26,7 +26,7 @@ to predict gene to symptoms with leave one out:
 #### important ####
 #### if you do not have computer cluster to do this, it will take around 5000 days to finish all  4828 genes ####
 #### because for each gene, one  has to train a model that take ~ 1 day on single node                       ####
-#### thus, if you want to try this, use computer cluster by submit the jobs !!!                              ####
+#### thus, if you want to try this, use computer cluster by submitting the jobs to cluster !!!               ####
 ./scan_all_jkn_boostrf_top1_ent_null_knowgene.job
 
 ####
