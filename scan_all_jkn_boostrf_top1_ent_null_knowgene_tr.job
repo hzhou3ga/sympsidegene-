@@ -1,0 +1,64 @@
+#!/bin/tcsh -f  
+
+
+set mmm=$0:r
+set ddd=`echo 1 | awk 'BEGIN{cc="'$mmm'"}{for(l=1;l<=length(cc);l++) if(substr(cc,l,1)=="/") ip=l}END{print substr(cc,1,ip-1)}'`
+
+#this is for training a full model ( use all genes ) and predicting symptoms for genes not in training. 
+
+#the PYTHON varialbe much be set according to ypur system, it should have scikit-learn (https://scikit-learn.org/) installed
+setenv PYTHON /local/images/anaconda2_4.4.0/bin/python
+
+if ( ! -e model ) mkdir model
+
+set np=0
+set i=0
+lpi:
+
+if ( $i == 0 ) then
+set me0="XXXX"
+endif 
+set out=output/$me0/mycomb_boostrf_pred2.txt 
+
+if ( ! -e output/$me0 ) mkdir -p output/$me0 
+if (  -e $out  ) then
+#goto ok1
+else 
+endif 
+
+
+echo $i  $me0  
+
+
+set job=/tmp/${USER}/sympside_jkn_tr.job
+if ( ! -e /tmp/${USER} ) mkdir -p /tmp/${USER} 
+
+set jbn=X${me0}_N2
+
+
+
+set mydir=`pwd`
+
+
+echo "#\!/bin/tcsh -f " > ! $job
+echo "#PBS -d /tmp/${USER}  " >> $job
+echo "#PBS -e $mydir " >> $job
+echo "#PBS -l qos=batch " >> $job
+echo "#PBS -N $jbn " >> $job
+echo " " >> $job
+echo "setenv LIU $ddd " >> $job 
+echo "set rundir=$mydir " >> $job
+echo "cd  $mydir " >> $job 
+echo "$ddd/scan_jkn_boostrf_2_tr.job  $me0   " >> $job 
+chmod a+x $job 
+
+echo "run ..."
+setenv PBS_JOBID testbrfsymptom-tr/ 
+$job 
+exit
+
+
+@ i = $i + 1
+if ( $i <= $np ) goto lpi
+
+ok:
