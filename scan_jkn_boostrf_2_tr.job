@@ -99,7 +99,7 @@ endif
 
 @ m = $m + 1
 #if ( $m <= 2 ) goto lpm
-cat _mypred0.txt > ! $mydir/output/$me/mycomb_boostrf_pred2.txt 
+#cat _mypred0.txt > ! $mydir/output/$me/mycomb_boostrf_pred2.txt 
 
 cat test0_fea.txt | awk '{print $(NF-1),$NF}' >! x0 
 paste _mypred0.txt x0 >! $mydir/output/$me/mycomb_boostrf_pred2_gn.txt
